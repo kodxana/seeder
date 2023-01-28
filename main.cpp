@@ -36,7 +36,7 @@ public:
   CDnsSeedOpts() : nThreads(96), nDnsThreads(4), ip_addr("::"), nPort(53), mbox(NULL), ns(NULL), host(NULL), tor(NULL), fUseTestNet(false), fWipeBan(false), fWipeIgnore(false), ipv4_proxy(NULL), ipv6_proxy(NULL) {}
 
   void ParseCommandLine(int argc, char **argv) {
-    static const char *help = "LBRY-seeder\n"
+    static const char *help = "blocknet-seeder\n"
                               "Usage: %s -h <host> -n <ns> [-m <mbox>] [-t <threads>] [-p <port>]\n"
                               "\n"
                               "Options:\n"
@@ -418,9 +418,9 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"dnsseed1.lbry.io", "dnsseed2.lbry.io", "dnsseed3.lbry.io", ""};
-static const string testnet_seeds[] = {"testdnsseed1.lbry.io",
-                                       "testdnsseed2.lbry.io",
+static const string mainnet_seeds[] = {"seed1.blocknet.co", "seed2.blocknet.co", "seed3.blocknet.co", ""};
+static const string testnet_seeds[] = {"testnet-seed1.blocknet.co",
+                                       "testnet-seed2.blocknet.co",
                                        ""};
 static const string *seeds = mainnet_seeds;
 
@@ -478,10 +478,10 @@ int main(int argc, char **argv) {
   bool fDNS = true;
   if (opts.fUseTestNet) {
       printf("Using testnet.\n");
-      pchMessageStart[0] = 0xfa;
-      pchMessageStart[1] = 0xe4;
-      pchMessageStart[2] = 0xaa;
-      pchMessageStart[3] = 0xe1;
+      pchMessageStart[0] = 0xa1;
+      pchMessageStart[1] = 0xa0;
+      pchMessageStart[2] = 0xa2;
+      pchMessageStart[3] = 0xa3;
       seeds = testnet_seeds;
       fTestNet = true;
   }
